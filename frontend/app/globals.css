@@ -1,26 +1,286 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-sans: var(--font-space-grotesk);
+  --bg-0: #f7fbff;
+  --bg-1: #eef6ff;
+  --bg-2: #e3f0ff;
+  --surface: #ffffff;
+  --surface-soft: #f1f7ff;
+  --border: rgba(15, 33, 56, 0.14);
+  --border-strong: rgba(15, 33, 56, 0.24);
+  --text: #0f2138;
+  --muted: #5b6f8f;
+  --brand: #5ab1ff;
+  --brand-strong: #2f87f2;
+  --brand-soft: rgba(90, 177, 255, 0.22);
+  --eye: #2f87f2;
+  --ok: #22c55e;
+  --warning: #f59e0b;
+  --error: #e11d48;
+  --radius: 18px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-sans), sans-serif;
+  background: var(--bg-0);
+}
+
+.app-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.app-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(
+      64rem 26rem at 14% -10%,
+      rgba(90, 177, 255, 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      46rem 22rem at 94% 8%,
+      rgba(255, 255, 255, 0.8),
+      transparent 62%
+    ),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1) 42%, var(--bg-0));
+  z-index: -2;
+}
+
+.app-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(15, 33, 56, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 33, 56, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, rgba(15, 33, 56, 0.28), transparent 72%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.card {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(232, 243, 255, 0.86)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 16px 36px rgba(25, 55, 100, 0.16);
+}
+
+.card-flat {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.subtle {
+  color: var(--muted);
+}
+
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(15, 33, 56, 0.6);
+}
+
+.status-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: var(--ok);
+}
+
+.balance-text {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --radius: 14px;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+}
+
+.marketing-shell {
+  position: relative;
+}
+
+.adera-panel {
+  border-radius: var(--radius);
+  border: 1px solid rgba(15, 33, 56, 0.12);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(233, 244, 255, 0.88)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 18px 42px rgba(35, 78, 120, 0.18);
+}
+
+.adera-hero-backdrop {
+  position: absolute;
+  inset: -30% -10% auto;
+  height: 36rem;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      36rem 20rem at 20% 34%,
+      rgba(90, 177, 255, 0.28),
+      transparent 70%
+    ),
+    radial-gradient(
+      36rem 20rem at 78% 22%,
+      rgba(255, 255, 255, 0.75),
+      transparent 72%
+    );
+  filter: blur(14px);
+  animation: adera-glow 10s ease-in-out infinite alternate;
+}
+
+.adera-icon-wrap {
+  display: inline-flex;
+  height: 2.2rem;
+  width: 2.2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(15, 33, 56, 0.16);
+  background: rgba(255, 255, 255, 0.7);
+  color: #2f87f2;
+}
+
+.adera-avatar {
+  display: inline-flex;
+  height: 2.8rem;
+  width: 2.8rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(15, 33, 56, 0.2);
+  background:
+    radial-gradient(
+      circle at 30% 24%,
+      rgba(90, 177, 255, 0.7),
+      rgba(90, 177, 255, 0.18) 70%
+    ),
+    rgba(15, 33, 56, 0.08);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.adera-logo-glow {
+  filter: drop-shadow(0 0 24px rgba(90, 177, 255, 0.55))
+    drop-shadow(0 0 58px rgba(90, 177, 255, 0.35));
+  animation: adera-logo-float 7s ease-in-out infinite alternate;
+}
+
+.docs-prose {
+  max-width: 100%;
+}
+
+.docs-prose section + section {
+  margin-top: 2rem;
+}
+
+.docs-prose h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.docs-prose p {
+  margin-top: 0.95rem;
+  max-width: 72ch;
+  color: rgba(15, 33, 56, 0.75);
+  line-height: 1.75;
+}
+
+.docs-prose pre {
+  margin-top: 1rem;
+  overflow-x: auto;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(15, 33, 56, 0.16);
+  background: rgba(231, 241, 255, 0.75);
+  padding: 0.95rem 1rem;
+}
+
+.docs-prose code {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: #1f4d86;
+}
+
+@keyframes adera-glow {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.65;
+  }
+  to {
+    transform: translate3d(0, 16px, 0) scale(1.05);
+    opacity: 0.95;
+  }
+}
+
+@keyframes adera-logo-float {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(0, -8px, 0) scale(1.02);
+  }
+}
+
+@keyframes spin-3d {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.spin-3d {
+  animation: spin-3d 2s linear infinite; /* Adjust '2s' for speed; 'linear' for constant pace */
 }
