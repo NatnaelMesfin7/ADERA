@@ -65,7 +65,7 @@ const parseMintableTokens = (value: string | undefined): LendingToken[] => {
 const chainIdValue = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? "1287");
 
 export const env = {
-  chainId: Number.isNaN(chainIdValue) ? 11155111 : chainIdValue,
+  chainId: Number.isNaN(chainIdValue) ? 1287 : chainIdValue,
   lendingPoolAddress: parseAddress(
     process.env.NEXT_PUBLIC_LENDING_POOL_ADDRESS,
   ),
