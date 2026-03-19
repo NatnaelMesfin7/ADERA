@@ -54,7 +54,7 @@ export type AderaAiChatPayload = {
     supportedTokens: AderaAiSupportedTokenContext[];
     protocol: {
       name: "ADERA Finance";
-      chain: "Polkadot Moonbeam";
+      chain: "Moonbase Alpha";
       lendingModel: "Overcollateralized lending";
       aprModel: "Credit-aware APR where borrower quality can influence borrowing rate around asset base APR and APR floor.";
     };
