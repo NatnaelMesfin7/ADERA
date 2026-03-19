@@ -20,7 +20,7 @@ export const AppHeader = () => {
           <div>
             <p className="kicker">ADERA Finance</p>
             <h1 className="mt-1 text-2xl font-semibold tracking-tight text-black">
-              Testnet
+              Moonbase Alpha's Credit-Aware Lending Protocol
             </h1>
           </div>
         </Link>

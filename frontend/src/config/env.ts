@@ -77,7 +77,6 @@ export const env = {
   supportedTokens: parseSupportedTokens(
     process.env.NEXT_PUBLIC_SUPPORTED_TOKENS,
   ),
-  mintableTokens: parseMintableTokens(process.env.NEXT_PUBLIC_MINTABLE_TOKENS),
   notificationSubscriptionUrl:
     process.env.NEXT_PUBLIC_NOTIFICATION_SUBSCRIPTION_URL ?? "",
   aderaAiAgentUrl: process.env.NEXT_PUBLIC_ADERA_AI_AGENT_URL ?? "",
@@ -88,7 +87,6 @@ export const hasValidLendingPoolAddress =
 export const hasWalletConnectProjectId =
   env.walletConnectProjectId.trim().length > 0;
 export const hasSupportedTokens = env.supportedTokens.length > 0;
-export const hasMintableTokens = env.mintableTokens.length > 0;
 export const hasNotificationSubscriptionUrl =
   env.notificationSubscriptionUrl.trim().length > 0;
 export const hasAderaAiAgentUrl = env.aderaAiAgentUrl.trim().length > 0;
